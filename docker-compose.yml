@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15        
@@ -10,9 +8,11 @@ services:
       POSTGRES_PASSWORD: snowflake  
       POSTGRES_DB: snowflake_db          
     ports:
-      - "5432:5432"  
+      - "5433:5432"  
     volumes:
       - postgres_data:/var/lib/postgresql/data  
+      - ./sql/init:/docker-entrypoint-initdb.d
+      - "./исходные данные:/data:ro"
 
 volumes:
   postgres_data:
